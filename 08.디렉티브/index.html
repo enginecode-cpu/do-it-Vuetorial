@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>08.디렉티브</title>
+</head>
+<body>
+  <div id="app">
+    <!-- v-if -->
+    <a v-if='flag'>Vue.js</a>
+    
+    <!-- v-for -->
+    <ul>
+      <li v-for="system in systems">{{ system }}</li>
+    </ul>
+    
+    <!-- v-show -->
+    <p v-show="flag">Hello, Vue.js</p>
+    
+    <!-- v-bind -->
+    <h5 v-bind:id='uid'>뷰제이에스</h5>
+    
+    <!-- v-on -->
+    <button @click="popupAlert">경고 창 버튼</button>
+    <button @click="clickBtn(10)">클릭</button>
+    <button @click="raiseEvent">이벤트 발생 클릭</button>
+
+    <!-- computed -->
+    <p>{{ reverseMessage }}</p>
+
+    <!-- watch -->
+    <input v-model="msg">
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+  <script>
+    const app  = new Vue({
+      el: '#app',
+      data: {
+        flag: false,
+        systems: ['Android', '맥OS', 'Window'],
+        uid: 10,
+        message: 'Hello Vue! Goodbye React!',
+        msg: 'Hello Vue.js'
+      },
+      methods: {
+        popupAlert() {
+          return alert('경고 창 표시')
+        },
+        clickBtn(num) {
+          alert(`clicked ${num} times`)
+        },
+        raiseEvent(e) {
+          console.log(e)
+        },
+      },
+      computed: {
+        reverseMessage() {
+          return this.message.split('').reverse().join('')
+        }
+      },
+      watch: {
+        msg(data) {
+          console.log(`msg의 값이 바뀝니다: ${data}`)
+        }
+      }
+    })
+  </script>
+</body>
+</html>
